@@ -1,6 +1,6 @@
-const { Shop, Item } = require("../src/gilded_rose");
+const { Shop, Item } = require("../src/gilded-rose");
 
-describe("Gilded Rose item", function () {
+const test = describe("Gilded Rose item", function () {
 
   it("should keep name", function () {
     const gildedRose = new Shop([new Item("Stuff", 5, 5)]);
@@ -9,3 +9,5 @@ describe("Gilded Rose item", function () {
   });
 
 });
+
+export default test;
