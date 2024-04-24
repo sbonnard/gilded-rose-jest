@@ -59,6 +59,12 @@ describe("Gilded Rose item", function () {
     expect(items[0].quality).toBeGreaterThanOrEqual(0);
   })
 
+  it("should increase aged Brie's quality twice faster when sellIn below 0", function () {
+    const gildedRose = new Shop([new Item("Aged Brie", -4, 2)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toBeGreaterThanOrEqual(2 + 2);
+  })
+
   it("should never be over 50 quality for aged Brie", function () {
     const gildedRose = new Shop([new Item("Aged Brie", -1, 50)]);
     let items;
@@ -95,18 +101,16 @@ describe("Gilded Rose item", function () {
 
   it("should increase 2 quality of Backstage Pass when 10 days or less left", function () {
     const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 10, 10)]);
-    let items;
     for (let days = 1; days <= 5; days++) {
-      items = gildedRose.updateQuality();
+      const items = gildedRose.updateQuality();
       expect(items[0].quality).toBe(10 + 2 * days);
     }
   })
 
   it("should increase 3 quality of Backstage Pass when 5 days or less left", function () {
     const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 5, 10)]);
-    let items;
     for (let days = 1; days <= 5; days++) {
-      items = gildedRose.updateQuality();
+      const items = gildedRose.updateQuality();
       expect(items[0].quality).toBe(10 + 3 * days);
     }
   })
