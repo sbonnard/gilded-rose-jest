@@ -18,7 +18,7 @@ describe("Gilded Rose item", function () {
     const gildedRose = new Shop([new Item("Stuff", 10, 5)]);
     let items;
     for (let days = 1; days <= 5; days++) {
-      items = gildedRose.updateQuality();     
+      items = gildedRose.updateQuality();
       expect(items[0].sellIn).toBe(10 - days);
     }
   });
@@ -33,7 +33,7 @@ describe("Gilded Rose item", function () {
     const gildedRose = new Shop([new Item("Stuff", 8, 10)]);
     let items;
     for (let days = 1; days <= 5; days++) {
-      items = gildedRose.updateQuality();     
+      items = gildedRose.updateQuality();
       expect(items[0].quality).toBe(10 - days);
     }
   });
@@ -42,33 +42,39 @@ describe("Gilded Rose item", function () {
     const gildedRose = new Shop([new Item("Stuff", -1, 10)]);
     let items;
     for (let days = 1; days <= 5; days++) {
-      items = gildedRose.updateQuality();     
+      items = gildedRose.updateQuality();
       expect(items[0].quality).toBe(10 - 2 * days);
     }
   });
 
-  it("should never be over 50 quality", function() {
-    const gildedRose = new Shop([new Item("Stuff", 5, 48)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].quality).toBeLessThanOrEqual(50);
-  })
-
-  it("should never be under 0 quality", function() {
+  it("should never be under 0 quality", function () {
     const gildedRose = new Shop([new Item("Stuff", 5, 2)]);
     const items = gildedRose.updateQuality();
     expect(items[0].quality).toBeGreaterThanOrEqual(0);
   })
 
-  it("should only increase aged Brie's quality", function() {
+  it("should only increase aged Brie's quality", function () {
     const gildedRose = new Shop([new Item("Aged Brie", 5, 2)]);
     const items = gildedRose.updateQuality();
     expect(items[0].quality).toBeGreaterThanOrEqual(0);
   })
 
-  it("should always be 80 quality for legendary items", function(){
+  it("should never be over 50 quality", function () {
+    const gildedRose = new Shop([new Item("Stuff", 5, 48)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toBeLessThanOrEqual(50);
+  })
+
+  it("should always be 80 quality for legendary items", function () {
     const gildedRose = new Shop([new Item("Sulfuras, Hand of Ragnaros", 0, 800)]);
     const items = gildedRose.updateQuality();
     expect(items[0].quality).toEqual(80);
+  })
+
+  it("should increase quality of Backstage Pass", function(){
+    const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 15, 10)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toBe(11)
   })
 
 });
