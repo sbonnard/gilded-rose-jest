@@ -29,6 +29,15 @@ describe("Gilded Rose item", function () {
     expect(items[0].quality).toBe(5 - 1);
   });
 
+  it("should decrease quality each day", function () {
+    const gildedRose = new Shop([new Item("Stuff", 8, 10)]);
+    let items;
+    for (let days = 1; days <= 5; days++) {
+      items = gildedRose.updateQuality();     
+      expect(items[0].quality).toBe(10 - days);
+    }
+  });
+
   it("should never be over 50 quality", function() {
     const gildedRose = new Shop([new Item("Stuff", 5, 48)]);
     const items = gildedRose.updateQuality();
