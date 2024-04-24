@@ -1,4 +1,4 @@
-import { Shop, Item  } from "../src/gilded-rose.js";
+import { Shop, Item } from "../src/gilded-rose.js";
 
 const shop = new Shop([
     new Item('Bread', 3, 6),

@@ -64,7 +64,8 @@ class Shop {
   }
 }
 
+
 export {
   Item,
-  Shop
+  Shop,
 }
